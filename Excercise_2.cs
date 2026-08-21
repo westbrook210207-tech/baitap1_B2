@@ -1,3 +1,6 @@
+using System.Numerics;
+using System.Xml.Schema;
+
 class Program2
 {
     static void Main(string[] args)
@@ -48,23 +51,33 @@ class Program2
             Console.WriteLine("số điện mới phải lớn hơn số điện cũ");
             return;
         }
-        float total = (SDM - SDC);
-        Console.WriteLine($"số điện tiêu thụ: {total}");
-        if (total <= 50)
+        float tieuthu = (SDM - SDC);
+        float total_ = 0f;
+        Console.WriteLine($"số điện tiêu thụ: {tieuthu}");
+        if (tieuthu <= 50)
         {
-            Console.WriteLine($"số tiền phải trả: {total * 1860}");
+            total_ =tieuthu * 1860;
         }
-        else if (total <= 100)
+        else if (tieuthu <= 100)
         {
-            Console.WriteLine($"số tiền phải trả: {50 * 1860 + (total - 50) * 1866}");
+            total_=50 * 1860 + (tieuthu - 50) * 1866;
         }
-        else if (total <= 200)
+        else if (tieuthu <= 200)
         {
-            Console.WriteLine($"số tiền phải trả: {50 * 1860 + 50 * 1866 + (total - 100) * 2167}");
+            total_=50 * 1860 + 50 * 1866 + (tieuthu - 100) * 2167;
+        }
+        else if (tieuthu <= 300)
+        {
+            total_=50 * 1860 + 50 * 1866 + 100 * 2167 + (tieuthu - 200) * 2729;
         }
         else
         {
-            Console.WriteLine($"số tiền phải trả: {50 * 1860 + 50 * 1866 + 100 * 2167 + (total - 200) * 2729}");
+            total_=50 * 1860 + 50 * 1866 + 100 * 2167 + 100 * 2729 * (tieuthu-300)*3050;
         }
+        float total = total_*1.08f;
+        Console.WriteLine($"Tổng tiêu thụ {tieuthu}");
+        Console.WriteLine($"Tiền điện chưa thuế {total_}");
+        Console.WriteLine($"Tổng tiền {total}");
+        Console.WriteLine($"Tiền thuế {total_*0.08f}");
     }
 }
