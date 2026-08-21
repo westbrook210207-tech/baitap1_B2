@@ -12,3 +12,4 @@
 /Users/datnguyen/CSLT_B2/MyApp/obj/Debug/net10.0/MyApp.pdb
 /Users/datnguyen/CSLT_B2/MyApp/obj/Debug/net10.0/MyApp.genruntimeconfig.cache
 /Users/datnguyen/CSLT_B2/MyApp/obj/Debug/net10.0/ref/MyApp.dll
+/Users/datnguyen/CSLT_B2/MyApp/obj/Debug/net10.0/MyApp.sourcelink.json
