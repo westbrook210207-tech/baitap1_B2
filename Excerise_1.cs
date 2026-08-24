@@ -11,7 +11,7 @@
         //Exercise7();
         //Exercise8();
         //Exercise9();
-        Exercise10();
+        //Exercise10();
     }
 
     static void Exercise1()
