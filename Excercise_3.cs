@@ -1,4 +1,5 @@
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography.X509Certificates;
 
 class Program3
 
@@ -9,90 +10,162 @@ class Program3
         //Excercise_2();
         //Excercise_3();
         //Excercise_4();
-        Excercise_5();
+        
     }
     static void Excercise_1()
     {
-        Console.WriteLine("Hãy nhập 1 số a: ");
-        int a = int.Parse(Console.ReadLine());
-        Console.WriteLine("Hãy nhập 1 số b: ");
-        int b = int.Parse(Console.ReadLine());
-        Console.WriteLine($"{a} + {b} = {a+b}");
-        Console.WriteLine($"{a} - {b} = {a-b}");
-        Console.WriteLine($"{a} * {b} = {a*b}");
-        Console.WriteLine($"{a} / {b} = {a/b}");
-        Console.WriteLine($"{a} % {b} = {a%b}");
-    }
-    static void Excercise_2()
-    {
-        double y;
+        Console.Write("Enter a number: ");
+        int number = Convert.ToInt32(Console.ReadLine());
 
-        // Prompt user and parse float/double input
-        Console.Write("Please enter a number from -5 to 5: ");
-        while (!double.TryParse(Console.ReadLine(), out y))
+        if (number % 2 == 0)
         {
-            Console.Write("Please enter a valid number: ");
-        }
-
-        while (true)
-        {
-            if (y >= -5 && y <= 5)
-            {
-                // Math equation: x = y^2 + 2y + 1
-                double x = Math.Pow(y, 2) + (2 * y) + 1;
-                Console.WriteLine(x);
-                break;
-            }
-            else
-            {
-                Console.WriteLine("Please enter a valid number: ");
-                Console.Write("Please enter a number from -5 to 5: ");
-                
-                // Re-prompt until they provide a valid number
-                while (!double.TryParse(Console.ReadLine(), out y))
-                {
-                    Console.Write("Please enter a valid number: ");
-                }
-
-    }
-        }
-}
-    static void Excercise_3()
-    {
-        Console.WriteLine("Enter Distance traveled in km: "); float distance = float.Parse(Console.ReadLine());
-        Console.WriteLine("Enter Time traveled in hours: "); float time = float.Parse(Console.ReadLine());
-        Console.WriteLine($"Your speed is {distance/time} km/h");
-        Console.WriteLine($"Your speed is {distance*0.621371f/time} mile/h");
-    }
-    static void Exercise_4()
-    {
-        Console.WriteLine("Enter radius of the sphere: ");
-        float radius = Convert.ToSingle(Console.ReadLine());
-        float surfaceArea = 4 * 3.14f * radius * radius; 
-        float volume = (4/3) * 3.14f * radius * radius * radius;
-        Console.WriteLine($"Surface area of the sphere: {surfaceArea}");
-        Console.WriteLine($"Volume of the sphere: {volume}");
-    }
-
-    static void Excercise_5()
-    {
-        Console.WriteLine("Enter anything: ");
-        string symbol = Console.ReadLine();
-        string[] vowels = { "u", "i", "e", "o", "a" };
-
-        if (vowels.Contains(symbol.ToLower()))
-        {
-            Console.WriteLine($"{symbol} is a vowel");
-        }
-        else if (int.TryParse(symbol, out int number) && number >= 0 && number <= 9) 
-        {
-            // Checks if the input is a single digit/number (0-9)
-            Console.WriteLine($"{symbol} is a digit");
+            Console.WriteLine(number + " is Even.");
         }
         else
         {
-            Console.WriteLine($"{symbol} is other symbol");
+            Console.WriteLine(number + " is Odd.");
         }
     }
+    static void Excercise_2()
+    {
+        Console.Write("Enter first number: ");
+        int a = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter second number: ");
+        int b = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter third number: ");
+        int c = Convert.ToInt32(Console.ReadLine());
+
+        if (a >= b && a >= c)
+        {
+            Console.WriteLine("Largest number is: " + a);
+        }
+        else if (b >= a && b >= c)
+        {
+            Console.WriteLine("Largest number is: " + b);
+        }
+        else
+        {
+            Console.WriteLine("Largest number is: " + c);
+        }
     }
-    
+    static void Excercise_3()
+    {
+        Console.Write("Enter side 1: ");
+        int side1 = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter side 2: ");
+        int side2 = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter side 3: ");
+        int side3 = Convert.ToInt32(Console.ReadLine());
+
+        if (side1 == side2 && side2 == side3)
+        {
+            Console.WriteLine("The triangle is Equilateral.");
+        }
+        else if (side1 == side2 || side2 == side3 || side1 == side3)
+        {
+            Console.WriteLine("The triangle is Isosceles.");
+        }
+        else
+        {
+            Console.WriteLine("The triangle is Scalene.");
+        }
+    }
+
+    static void Excercise_4()
+    {
+        Console.Write("Enter X coordinate: ");
+        int x = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter Y coordinate: ");
+        int y = Convert.ToInt32(Console.ReadLine());
+
+        if (x == 0 && y == 0)
+        {
+            Console.WriteLine("The point is at the Origin.");
+        }
+        else if (x == 0)
+        {
+            Console.WriteLine("The point lies on the Y-axis.");
+        }
+        else if (y == 0)
+        {
+            Console.WriteLine("The point lies on the X-axis.");
+        }
+        else if (x > 0 && y > 0)
+        {
+            Console.WriteLine("The point lies in Quadrant I.");
+        }
+        else if (x < 0 && y > 0)
+        {
+            Console.WriteLine("The point lies in Quadrant II.");
+        }
+        else if (x < 0 && y < 0)
+        {
+            Console.WriteLine("The point lies in Quadrant III.");
+        }
+        else
+        {
+            Console.WriteLine("The point lies in Quadrant IV.");
+        }
+    }
+    static void Excercise_5()
+    {
+        Console.Write("Enter coefficient a: ");
+        double a = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter coefficient b: ");
+        double b = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter coefficient c: ");
+        double c = Convert.ToDouble(Console.ReadLine());
+
+        // Case a = 0 -> not actually a quadratic equation
+        if (a == 0)
+        {
+            if (b == 0)
+            {
+                if (c == 0)
+                {
+                    Console.WriteLine("The equation has infinite solutions.");
+                }
+                else
+                {
+                    Console.WriteLine("The equation has no solution.");
+                }
+            }
+            else
+            {
+                // Linear equation: bx + c = 0
+                double x = -c / b;
+                Console.WriteLine("This is a linear equation, solution: x = " + x);
+            }
+        }
+        else
+        {
+            // Calculate delta (discriminant)
+            double delta = b * b - 4 * a * c;
+
+            if (delta > 0)
+            {
+                double x1 = (-b + Math.Sqrt(delta)) / (2 * a);
+                double x2 = (-b - Math.Sqrt(delta)) / (2 * a);
+                Console.WriteLine("The equation has 2 distinct roots:");
+                Console.WriteLine("x1 = " + x1);
+                Console.WriteLine("x2 = " + x2);
+            }
+            else if (delta == 0)
+            {
+                double x = -b / (2 * a);
+                Console.WriteLine("The equation has a double root: x = " + x);
+            }
+            else
+            {
+                Console.WriteLine("The equation has no real solution (delta < 0).");
+            }
+        }
+    }
+}
