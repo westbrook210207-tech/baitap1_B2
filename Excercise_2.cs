@@ -1,9 +1,9 @@
 using System.Numerics;
 using System.Xml.Schema;
 
-class Program2
+/*class Program2
 {
-    static void Main(string[] args)
+    static void Main3(string[] args)
     {
         //Excercise1();
         //Excercise2();
@@ -12,7 +12,7 @@ class Program2
         //Excercise5();
         //Excercise6();
         //Excercise7();
-        Exercise8();
+        //Excercise8();
     }
     static void Excercise1()
     {
@@ -304,5 +304,4 @@ class Program2
         Console.WriteLine("Diem GPA Thang 4: " + gpa.ToString("F1"));
         Console.WriteLine("Xep Loai Hoc Luc: " + xepLoai);
     }
-}
-
+}*/

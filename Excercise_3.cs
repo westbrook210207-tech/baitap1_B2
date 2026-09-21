@@ -4,7 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 class Program3
 
 {
-    static void Main(string[] args)
+    static void Main3(string[] args)
     {
         //Exercise1();
         //Excercise_2();
