@@ -1,229 +1,254 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
-using System.Threading.Channels;
+using System.Security.Cryptography;
 
-namespace CSLT.CSLT.SS6
+class Program2
 {
-    internal class Ex20
+    static void Main(string[] args)
     {
-        static int ex1Tong(int a, int b)
-        {
-            Console.WriteLine($"{a} + {b} = {a + b}");
-            return a + b;
-        }
-        static bool ex2KiemTraChan(int n)
-        {
-            if (n % 2 == 0)
-            {
-                Console.Write($"{n} là số chẵn");
-                return true;
-            }
+        int result = TinhTong(a: 1, b: 2);
+        System.Console.WriteLine(result);
+        
+        bool results2 = KiemTraChan(n:1);
+        System.Console.WriteLine(results2);
 
-            Console.Write($"{n} là số lẻ");
-            return false;
-        }
-        static void ex3Max(int a, int b, int c)
-        {
-            int max = Math.Max(Math.Max(a, b), c);
+        int result3 = TimMax(a:1, b:2, c:7);
+        System.Console.WriteLine(result3);
 
-            Console.WriteLine($"Số lớn nhất trong ba số là{max}");
-        }
-        static void ex4TinhGiaiThua(int a)
+        long result4 = TinhGiaiThua(5);
+        System.Console.WriteLine(result4);
+
+        string result5 = DaoNguocChuoi("foo");
+        System.Console.WriteLine(result5);
+
+        bool result6 = KiemTraNguyenTo(n:23);
+        System.Console.WriteLine(result6);
+
+        InFibonacci(10);
+
+        int result8 = DemNguyenAm("cucurelaa");
+        System.Console.WriteLine(result8);
+
+        double result9 = TinhLuyThua(x:2d,y:3);
+        System.Console.WriteLine(result9);
+
+        double result10 = TinhTrungBinh([1,2,3,4,5]);
+        System.Console.WriteLine(result10);
+
+        bool result11 = KiemTraDoiXung("anna");
+        System.Console.WriteLine(result11);
+
+        double result12 = CelsiusToFahrenheit(0d);
+        System.Console.WriteLine(result12);
+
+        int result13 = TimMin([1,2,3,4,0]);
+        System.Console.WriteLine(result13);
+
+        int result14 = TongCacChuSo(1234);
+        System.Console.WriteLine(result14);
+
+        SapXepMang([1,5,4,3,6]);
+
+        string result16 = XoaTrungLap("Programming");
+        System.Console.WriteLine(result16);
+
+        int result17 = UCLN(12,16);
+        System.Console.WriteLine(result17);
+
+        string result18 = DecimalToBinary(10);
+        System.Console.WriteLine(result18);
+
+        bool result19 = KiemTraNamNhuan(2016);
+        System.Console.WriteLine(result19);
+
+        int result20 = DemSoTu("Học lập trình C# rất thú vị");
+        System.Console.WriteLine(result20);
+    }
+
+    static int TinhTong(int a, int b)
+    {
+        return a+b;
+    }
+
+    static bool KiemTraChan(int n)
+    {
+        if (n % 2 == 0)
         {
-            long sum = 1;
-            for (int i = 1; i <= a; i++)
-            {
-                sum *= i;
-            }
-            Console.WriteLine($"Giai thừa của{a} là {sum}");
-        }
-        static string ex5DaoNguocChuoi(string input)
-        {
-            char[] charArray = input.ToCharArray();
-            Array.Reverse(charArray);
-            return new string(charArray);
-        }
-        static bool ex6KiemtraSoNguyenTo(int a)
-        {
-            for (int i = 2; i <= a / 2; i++)
-            {
-                if (a % i == 0)
-                {
-                    Console.WriteLine("False");
-                    return false;
-                }
-            }
-            Console.WriteLine("True");
             return true;
         }
-        static void ex7nthFibonacci(int n)
-        {
-            long t1 = 0;
-            long t2 = 1;
-            for (int i = 0; i <= n; i++)
-            {
-                Console.WriteLine(t1 + " ");
-                long sum = t1 + t2;
-                t1 = t2;
-                t2 = sum;
+        return false;
+    }
 
-            }
-            Console.WriteLine();
+    static int TimMax(int a, int b, int c)
+    {
+        return Math.Max(Math.Max(a, b), c);
+    }
 
-        }
-        static int ex8DemNguyenAm(string s)
+    static long TinhGiaiThua(int n)
+    {
+        long res = 1;
+        for (int i = n; i>0; i-- )
         {
-            string NguyenAm = "aàáảãạăằắẳẵặâầấẩẫậeèéẻẽẹêềếểễệiìíỉĩịoòóỏõọôồốổỗộơờớởỡợuùúủũụưừứửữựyỳýỷỹỵ" +
-                        "AÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬEÈÉẺẼẸÊỀẾỂỄỆIÌÍỈĨỊOÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢUÙÚỦŨỤƯỪỨỬỮỰYỲÝỶỸỴ";
-            int dem = 0;
-            foreach (char c in s)
-            {
-                if (NguyenAm.Contains(c))
-                {
-                    dem++;
-                }
-            }
-            return dem;
+            res *= i;
         }
-        static double ex9TinhLuyThua(double x, int y)
-        {
-            double lt = 1;
-            for (int i = 1; i <= y; i++)
-            {
-                lt *= x;
-            }
-            return lt;
-        }
-        static double ex10TinhTrungBinhMang(int[] arr)
-        {
-            double tong = 0;
-            foreach (char x in arr)
-            {
-                tong += x;
-            }
-            return tong / arr.Length;
-        }
-        static bool ex11KiemTraTinhDoiXung(string s)
-        {
-            s = s.ToLower();
-            char[] charArray = s.ToCharArray();
-            char[] BeforeReverse = charArray;
-            Array.Reverse(charArray);
-            if (charArray.SequenceEqual(BeforeReverse))
-            {
-                return true;
-            }
-            return false;
-        }
-        static double ex12DoiTuDoCQuaDoF(double a)
-        {
-            double DoF = a * 1.8 + 32;
-            return DoF;
-        }
-        static int ex13TimMinTrongMang(int[] arr)
-        {
-            Array.Sort(arr);
-            int n = arr[0];
-            return n;
-        }
-        static int ex14TinhTongCacChuSoTrongN(int n)
-        {
-            int tong = 0;
-            while (n > 0)
-            {
-                tong += (n % 10);
-                n /= 10;
-            }
-            return tong;
-        }
-        static int[] ex15SapXepMang(int[] arr)
-        {
-            Array.Sort(arr);
-            return arr;
-        }
-        static string ex16XoaLapChuTrongTu(string s)
-        {
-            HashSet<char> DaXuatHien = new HashSet<char>();
-            StringBuilder ChoVao = new StringBuilder();
-            foreach(char c in s)
-            {
-                if (DaXuatHien.Add(c))
-                {
-                    ChoVao.Append(c);
-                }
-            }
-            return ChoVao.ToString();
-        }
-        static int ex17TimUCLN(int a, int b)
-        {
+        return res;
+    }
 
-            while (b != 0)
-            {
-                int r = a % b;
-                a = b;
-                b = r;
-            }
-            return a;
-        }
-        static string ex18DecimalToBinary(int n)
-        {
-            if (n == 0) return "0";
+    static string DaoNguocChuoi(string input)
+    {
+        char[] charArray = input.ToCharArray(); 
 
-            string ketQua = "";
-            int so = Math.Abs(n);
+        Array.Reverse(charArray); 
 
-            while (so > 0)
-            {
-                int du = so % 2;
-                ketQua = du + ketQua;
-                so /= 2;
-            }
+        string reversed = new string(charArray);
+        return reversed;
+    }
 
-            return (n < 0) ? "-" + ketQua : ketQua;
-        }
-        static bool ex19KiemTraNamNhuan(double year)
-        {
-            return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-        }
-        static int ex20KiemTraSoChuTrongCau(string s)
-        {
-            int dem = 0;
-            bool DangTrongTu = false;
-            string space = " ";
-            foreach (char c in s)
-            {
-                if (c != ' ')
-                {
-                    if (!DangTrongTu)
-                    {
-                        dem++;
-                        DangTrongTu = true;
-                    }
-
-                }
-                else
-                {
-                    DangTrongTu = false;
-                }
-            }
-            return dem;
-        }
-        static void Main(string[] args)
-        {
-            Console.InputEncoding = Encoding.UTF8;
-            Console.OutputEncoding = Encoding.UTF8;
-            ex1Tong(1,2);
-
-        }
-        
-        
-        
-
-        
+    static bool KiemTraNguyenTo(int n)
+    {
+        if (n < 2) return false;
+    
+    for (int i = 2; i * i <= n; i++)
+    {
+        if (n % i == 0) return false;
     }
     
-}
+    return true;
+    }
 
+    static void InFibonacci(int n)
+    {
+        long[] fib = new long[n];
+        fib[0] = 0;
+        fib[1] = 1;
+        System.Console.WriteLine(fib[0]);
+        System.Console.WriteLine(fib[1]);
+        for (int i = 2; i < n; i++)
+        {
+            fib[i] = fib[i - 1] + fib[i - 2];
+            System.Console.WriteLine(fib[i]);
+        }
+    }
+
+    static int DemNguyenAm(string s)
+        {
+            int dem = 0;
+            string nguyenAm = "aeiouAEIOU";
+            foreach (char letter in s)
+            {
+                if (nguyenAm.Contains(letter))
+                {
+                    dem ++;
+                }
+            }
+            return dem;
+        }
+
+    static double TinhLuyThua(double x, int y)
+    {
+    double res = 1;
+    for (int i = 0; i < Math.Abs(y); i++)
+    {
+        res *= x;
+    }
+    return res;
+    }
+
+    static double TinhTrungBinh(int[] arr)
+    {
+        double res = arr.Sum()/arr.Length;
+        return res;
+    }
+
+    static bool KiemTraDoiXung(string s)
+    {
+        char[] charArray = s.ToCharArray();
+        Array.Reverse(charArray); 
+        string reversed = new string(charArray);
+
+        if (reversed == s)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    static double CelsiusToFahrenheit(double c)
+    {
+        double res = c*(9.0/5.0)+32;
+        return res;
+    }
+
+    static int TimMin(int[] arr)
+    {
+        return arr.Min();
+    }
+
+    static int TongCacChuSo(int n)
+    {
+        int positiveNum = Math.Abs(n);
+        string str = positiveNum.ToString();
+        char[] charArray = str.ToCharArray();
+        int sum = 0;
+
+        for (int i = 0; i < charArray.Length; i++)
+        {
+            // Turn individual char back into a string since int.Parse only accept string not char
+            string singleCharString = charArray[i].ToString();
+
+            int digit = int.Parse(singleCharString);
+            sum += digit;
+        }
+
+        return sum;
+    
+    }
+
+    static void SapXepMang(int[] arr)
+    {
+        Array.Sort(arr);
+        foreach(int i in arr)
+        {
+            System.Console.WriteLine(i);
+        }
+    }
+
+    static string XoaTrungLap(string s)
+    {
+        string uniqueString = new string(s.Distinct().ToArray());
+        return uniqueString;
+
+    }
+
+    static int UCLN(int a, int b)
+    {
+        while (b != 0)
+    {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+    }
+
+    static string DecimalToBinary(int n)
+    {
+        string binary = Convert.ToString(n, 2); // built-in binary transformating func
+        return binary;
+    }
+
+    static bool KiemTraNamNhuan(int year)
+    {
+        if (year % 4 ==0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    static int DemSoTu(string sentence)
+    {
+        string[] split_word = sentence.Split(new[] { ' ', '\t', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        int num_word = split_word.Length;
+        return num_word;
+    }
+}
